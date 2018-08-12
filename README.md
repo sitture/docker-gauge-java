@@ -1,8 +1,10 @@
 # sitture / docker-gauge-java
 
-An alpine based image with [Gauge](https://gauge.org/) installed for running [gauge-java](https://github.com/getgauge/gauge-java) test suites.
+An alpine based maven image with [Gauge](https://gauge.org/) installed for running [gauge-java](https://github.com/getgauge/gauge-java) test suites.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?maxAge=2592000)](https://opensource.org/licenses/MIT) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](../../issues)
+
+The docker image tagging is based on the [version of Gauge](https://github.com/getgauge/gauge/releases). The `latest` tag contains the latest version of gauge.
 
 ## Usage
 
