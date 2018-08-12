@@ -1,0 +1,7 @@
+version: '3'
+services:
+    gauge:
+      build: .
+      container_name: docker-gauge-java
+      environment:
+        - GAUGE_VERSION=${GAUGE_VERSION}

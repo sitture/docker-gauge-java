@@ -1,0 +1,28 @@
+FROM maven:3.5-jdk-8-alpine
+MAINTAINER Haroon Sheikh <haroon@sitture.com>
+
+# os updates
+RUN apk update && \
+  # install update packages
+  apk add --update ca-certificates bash wget curl tar && \
+  rm -rf /var/cache/apk/*
+
+# install gauge
+ARG GAUGE_VERSION
+ENV GAUGE_VERSION $GAUGE_VERSION
+
+RUN cd /tmp && \
+  # example release url https://github.com/getgauge/gauge/releases/download/v1.0.0/gauge-1.0.0-linux.x86_64.zip
+  wget -qnc "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSION/gauge-$GAUGE_VERSION-linux.x86_64.zip" && \
+  unzip gauge-$GAUGE_VERSION-linux.x86_64.zip -d /usr/local/bin && \
+  # install gauge plugins
+  gauge install java && \
+  gauge install html-report && \
+  gauge install xml-report && \
+  gauge install spectacle && \
+  gauge install flash && \
+  gauge -v
+
+WORKDIR /usr/src/app
+ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
+CMD ["bash"]
