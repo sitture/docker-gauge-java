@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    machine:
+      docker_layer_caching: true
+    steps:
+      - checkout
+      - run:
+          name: Build image
+          command: |
+            if [[ -z "$CIRCLE_TAG" ]]; then CIRCLE_TAG=$(git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`); fi
+            echo $CIRCLE_TAG
+            docker build -t sitture/docker-gauge-java:$CIRCLE_SHA1 --build-arg GAUGE_VERSION=$CIRCLE_TAG .
