@@ -26,8 +26,7 @@ RUN wget -qnc "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSI
   gauge install html-report && \
   gauge install xml-report && \
   gauge install spectacle && \
-  gauge install flash && \
-  gauge -v
+  gauge install flash && gauge -v
 
 WORKDIR /usr/src/app
 ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
