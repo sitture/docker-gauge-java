@@ -8,7 +8,7 @@ The docker image tagging is based on the [version of Gauge](https://github.com/g
 
 ## Usage
 
-* TODO
+* Pull the latest Image with `docker pull sitture/docker-gauge-java:latest`
 
 ## Issues & Contributions
 
