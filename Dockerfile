@@ -10,11 +10,13 @@ RUN apk update && \
 # install gauge
 ARG GAUGE_VERSION
 ENV GAUGE_VERSION $GAUGE_VERSION
+ENV GAUGE_ARCHIVE gauge-$GAUGE_VERSION-linux.x86_64.zip
 
-RUN cd /tmp && \
+RUN \
   # example release url https://github.com/getgauge/gauge/releases/download/v1.0.0/gauge-1.0.0-linux.x86_64.zip
-  wget -qnc "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSION/gauge-$GAUGE_VERSION-linux.x86_64.zip" && \
-  unzip gauge-$GAUGE_VERSION-linux.x86_64.zip -d /usr/local/bin && \
+  wget -qnc "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSION/$GAUGE_ARCHIVE" && \
+  unzip $GAUGE_ARCHIVE -d /usr/local/bin && \
+  rm -rf $GAUGE_ARCHIVE && \
   # install gauge plugins
   gauge install java && \
   gauge install html-report && \
