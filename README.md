@@ -26,6 +26,8 @@ When using maven, you can mount the maven `.m2` repository in the container:
 docker run -it --rm -v ~/.m2:/root/.m2 sitture/docker-gauge-java:latest mvn --version
 ```
 
+You can add additional volumes for your test reports, etc.
+
 ### Using `docker-compose.yml`
 
 Example:
