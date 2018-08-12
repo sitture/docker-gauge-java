@@ -5,3 +5,7 @@ services:
       container_name: docker-gauge-java
       environment:
         - GAUGE_VERSION=${GAUGE_VERSION}
+      volumes:
+        - '.:/usr/src/app'
+        - '/Users/${USER}/.m2:/root/.m2'
+      command: gauge -v

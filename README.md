@@ -8,7 +8,38 @@ The docker image tagging is based on the [version of Gauge](https://github.com/g
 
 ## Usage
 
-* Pull the latest Image with `docker pull sitture/docker-gauge-java:latest`
+Pull the latest Image with
+
+```bash
+docker pull sitture/docker-gauge-java:latest
+```
+
+### Using `docker run`
+
+```bash
+docker run -it --rm sitture/docker-gauge-java:latest gauge -v
+```
+
+When using maven, you can mount the maven `.m2` repository in the container:
+
+```bash
+docker run -it --rm -v ~/.m2:/root/.m2 sitture/docker-gauge-java:latest mvn --version
+```
+
+### Using `docker-compose.yml`
+
+Example:
+
+```yaml
+services:
+    gauge:
+      image: sitture/docker-gauge-java:latest
+      container_name: docker-gauge-java
+      volumes:
+        - '.:/usr/src/app'
+        - '/Users/${USER}/.m2:/root/.m2'
+      command: gauge -v
+```
 
 ## Issues & Contributions
 
