@@ -1,4 +1,4 @@
-# sitture/docker-gauge-java
+# sitture / docker-gauge-java
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?maxAge=2592000)](https://opensource.org/licenses/MIT) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](../../issues)
 
