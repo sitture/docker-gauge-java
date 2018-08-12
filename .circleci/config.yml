@@ -7,4 +7,4 @@ jobs:
       - checkout
       - run:
           name: Build image
-          command: docker build -t sitture/docker-gauge-java:latest .
+          command: docker build -t --build-arg GAUGE_VERSION=0.9.7 sitture/docker-gauge-java:$CIRCLE_SHA1 .
