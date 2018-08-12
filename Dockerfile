@@ -3,8 +3,13 @@ MAINTAINER Haroon Sheikh <haroon@sitture.com>
 
 # os updates
 RUN apk update && \
-  # install update packages
-  apk add --update ca-certificates bash wget curl tar && \
+  # install/update packages
+  apk add --update \
+    ca-certificates \
+    bash \
+    wget \
+    curl \
+    tar && \
   rm -rf /var/cache/apk/*
 
 # install gauge
