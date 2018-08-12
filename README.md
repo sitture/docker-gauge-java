@@ -6,6 +6,13 @@ An alpine based docker maven image with [Gauge](https://gauge.org) from [Thought
 
 The docker image tagging is based on the [version of Gauge](https://github.com/getgauge/gauge/releases). The `latest` tag contains the latest version of gauge.
 
+The current `latest` version of the image includes:
+
+- Gauge [Latest](https://github.com/getgauge/gauge/releases)
+    - Plugins `(java, html-report, xml-report and spectacle)`
+- Maven 3.5 / OpenJDK 1.8
+- Additional tools: `bash, curl, wget, tar`
+
 ## Usage
 
 Pull the latest Image with
