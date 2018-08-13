@@ -9,7 +9,7 @@ The docker image tagging is based on the [version of Gauge](https://github.com/g
 The current `latest` version of the image includes:
 
 - Gauge [Latest](https://github.com/getgauge/gauge/releases)
-    - Plugins `(java, html-report, xml-report and spectacle)`
+    - Plugins `html-report, java, screenshot, spectacle, xml-report`
 - Maven 3.5 / OpenJDK 1.8
 - Additional tools: `bash, curl, wget, tar`
 
