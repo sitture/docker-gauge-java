@@ -5,13 +5,13 @@ MAINTAINER Haroon Sheikh <haroon@sitture.com>
 ARG BUILD_DATE
 ARG VCS_REF
 ARG VERSION
-LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="Docker Gauge Java" \
-      org.label-schema.description="An alpine based maven image with Gauge installed for running BDD style gauge-java test suites." \
-      org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/sitture/docker-gauge-java" \
-      org.label-schema.version=$VERSION \
-      org.label-schema.schema-version="1.0"
+LABEL build-date=$BUILD_DATE \
+      name="Docker Gauge Java" \
+      description="An alpine based maven image with Gauge installed for running BDD style gauge-java test suites." \
+      vcs-ref=$VCS_REF \
+      vcs-url="https://github.com/sitture/docker-gauge-java" \
+      version=$VERSION \
+      schema-version="1.0"
 
 # os updates
 RUN apk update && \
