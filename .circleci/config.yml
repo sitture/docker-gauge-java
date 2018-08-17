@@ -21,7 +21,7 @@ jobs:
           command: |
             make
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            make docker_push
+            make docker_push notify
 workflows:
   version: 2
   build_and_deploy:

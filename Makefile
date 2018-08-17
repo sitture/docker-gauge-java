@@ -18,3 +18,6 @@ docker_push:
 	docker push $(DOCKER_IMAGE):latest
 	docker push $(DOCKER_IMAGE):$(CIRCLE_TAG)
 
+notify:
+	curl -X POST -I https://hooks.microbadger.com/images/sitture/docker-gauge-java/t32NLQBsxAjBB-Lv55qtHw4scTI=
+
