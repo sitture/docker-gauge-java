@@ -1,6 +1,18 @@
 FROM maven:3.5-jdk-8-alpine
 MAINTAINER Haroon Sheikh <haroon@sitture.com>
 
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG VCS_REF
+ARG VERSION
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name="Docker Gauge Java" \
+      org.label-schema.description="An alpine based maven image with Gauge installed for running BDD style gauge-java test suites." \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/sitture/docker-gauge-java" \
+      org.label-schema.version=$VERSION \
+      org.label-schema.schema-version="1.0"
+
 # os updates
 RUN apk update && \
   # install/update packages

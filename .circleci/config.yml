@@ -10,7 +10,7 @@ jobs:
           command: |
             CIRCLE_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
             echo $CIRCLE_TAG
-            docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 --build-arg GAUGE_VERSION=$CIRCLE_TAG .
+            make
   deploy:
     machine:
       docker_layer_caching: true
@@ -19,12 +19,9 @@ jobs:
       - run:
           name: Push Image
           command: |
-            docker build -t $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 --build-arg GAUGE_VERSION=$CIRCLE_TAG .
-            docker tag $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest
-            docker tag $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_SHA1 $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
+            make
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:latest
-            docker push $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
+            make docker_push
 workflows:
   version: 2
   build_and_deploy:
