@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/sitture/docker-gauge-java.svg?style=shield)](https://circleci.com/gh/sitture/docker-gauge-java) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?maxAge=2592000)](https://opensource.org/licenses/MIT) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](../../issues)
 
-[![](https://images.microbadger.com/badges/commit/sitture/docker-gauge-java.svg)](https://hub.docker.com/r/sitture/docker-gauge-java) [![](https://images.microbadger.com/badges/version/sitture/docker-gauge-java.svg)](https://hub.docker.com/r/sitture/docker-gauge-java) [![](https://images.microbadger.com/badges/image/sitture/docker-gauge-java.svg)](https://hub.docker.com/r/sitture/docker-gauge-java)
+[![Docker Commit](https://images.microbadger.com/badges/commit/sitture/docker-gauge-java.svg)](https://hub.docker.com/r/sitture/docker-gauge-java) [![Docker version](https://images.microbadger.com/badges/version/sitture/docker-gauge-java.svg)](https://hub.docker.com/r/sitture/docker-gauge-java) [![Docker size](https://images.microbadger.com/badges/image/sitture/docker-gauge-java.svg)](https://hub.docker.com/r/sitture/docker-gauge-java) [![Docker Pulls](https://img.shields.io/docker/pulls/sitture/docker-gauge-java.svg?style=round-square)](https://hub.docker.com/r/sitture/docker-gauge-java) [![Docker Stars](https://img.shields.io/docker/stars/sitture/docker-gauge-java.svg)](https://hub.docker.com/r/sitture/docker-gauge-java)
 
 An alpine based docker maven image with [Gauge](https://gauge.org) from [ThoughtWorks](https://www.thoughtworks.com) installed for running BDD style [gauge-java](https://github.com/getgauge/gauge-java) test suites.
 
