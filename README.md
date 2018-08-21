@@ -6,7 +6,7 @@
 
 An alpine based docker maven image with [Gauge](https://gauge.org) from [ThoughtWorks](https://www.thoughtworks.com) installed for running BDD style [gauge-java](https://github.com/getgauge/gauge-java) test suites.
 
-The docker image tagging is based on the [version of Gauge](https://github.com/getgauge/gauge/releases). The `latest` tag contains the latest version of gauge.
+The docker image tagging is based on the [version of Gauge](https://github.com/getgauge/gauge/releases). The `sitture/docker-gauge-java:latest` tag contains the latest version of gauge and `sitture/docker-gauge-java:1.0.0` tag will contain gauge version `1.0.0`. Here are the [available versions](https://hub.docker.com/r/sitture/docker-gauge-java/tags/).
 
 The current `latest` version of the image includes:
 
