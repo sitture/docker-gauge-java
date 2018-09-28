@@ -33,6 +33,8 @@ RUN wget -qnc "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSI
   # example release url https://github.com/getgauge/gauge/releases/download/v1.0.0/gauge-1.0.0-linux.x86_64.zip
   unzip $GAUGE_ARCHIVE -d /usr/local/bin && \
   rm -rf $GAUGE_ARCHIVE && \
+  # turn off telemetry
+  gauge telemetry off && \
   # install gauge plugins
   gauge install java && \
   gauge install html-report && \
