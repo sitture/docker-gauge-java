@@ -24,6 +24,13 @@ RUN apk update && \
     tar && \
   rm -rf /var/cache/apk/*
 
+# install phatomjs
+RUN mkdir -p /usr/share && \
+    cd /usr/share \
+    && curl -L https://github.com/Overbryd/docker-phantomjs-alpine/releases/download/2.11/phantomjs-alpine-x86_64.tar.bz2 | tar xj \
+    && ln -s /usr/share/phantomjs/phantomjs /usr/bin/phantomjs \
+    && phantomjs --version
+
 # install gauge
 ARG GAUGE_VERSION
 ENV GAUGE_VERSION $GAUGE_VERSION
