@@ -21,6 +21,8 @@ RUN apk update && \
     bash \
     wget \
     curl \
+    curl-dev \
+    fontconfig \
     tar && \
   rm -rf /var/cache/apk/*
 
