@@ -16,7 +16,7 @@ The current `latest` version of the image is built on top of `JDK 11`. You can g
 
 - Gauge [Latest](https://github.com/getgauge/gauge/releases)
     - Plugins `html-report, java, screenshot, spectacle, xml-report`
-- Maven 3.5
+- Maven 3
 - Additional tools: `bash, curl, wget, tar`
 
 ## Usage
