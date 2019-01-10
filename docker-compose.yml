@@ -1,8 +1,18 @@
 version: '3'
 services:
-    gauge:
-      build: .
-      container_name: docker-gauge-java
+    gauge-jdk8:
+      build: jdk8
+      container_name: docker-gauge-java-jdk8
+      environment:
+        - GAUGE_VERSION=${GAUGE_VERSION}
+      volumes:
+        - '.:/usr/src/app'
+        - '/Users/${USER}/.m2:/root/.m2'
+      command: gauge -v
+
+    gauge-jdk11:
+      build: jdk11
+      container_name: docker-gauge-java-jdk11
       environment:
         - GAUGE_VERSION=${GAUGE_VERSION}
       volumes:
