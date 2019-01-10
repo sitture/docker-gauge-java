@@ -17,6 +17,7 @@ LABEL build-date=$BUILD_DATE \
 RUN apt-get update && \
   # install/update packages
   apt-get install -y \
+    apt-utils \
     ca-certificates \
     bash \
     wget \
