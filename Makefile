@@ -16,6 +16,7 @@ docker_build:
 	--build-arg GAUGE_VERSION=$(CIRCLE_TAG) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_TAG) \
+	-t $(DOCKER_IMAGE):$(JDK11_TAG) \
 	-t $(DOCKER_IMAGE):latest jdk11/
 
 docker_build_jdk8:
@@ -26,12 +27,15 @@ docker_build_jdk8:
 	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 	--build-arg GAUGE_VERSION=$(CIRCLE_TAG) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1)-$(JDK8_TAG) \
+	-t $(DOCKER_IMAGE):$(JDK8_TAG) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_TAG)-$(JDK8_TAG) jdk8/
 
 docker_push:
 	# Push images
 	docker push $(DOCKER_IMAGE):latest
 	docker push $(DOCKER_IMAGE):$(CIRCLE_TAG)
+	docker push $(DOCKER_IMAGE):$(JDK11_TAG)
+	docker push $(DOCKER_IMAGE):$(JDK8_TAG)
 	docker push $(DOCKER_IMAGE):$(CIRCLE_TAG)-$(JDK8_TAG)
 
 notify:
