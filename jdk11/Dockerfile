@@ -1,4 +1,4 @@
-FROM maven:3.5-jdk-8-alpine
+FROM maven:3-jdk-11-slim
 MAINTAINER Haroon Sheikh <haroon@sitture.com>
 
 # Build-time metadata as defined at http://label-schema.org
@@ -14,15 +14,17 @@ LABEL build-date=$BUILD_DATE \
       schema-version="1.0"
 
 # os updates
-RUN apk update && \
+RUN apt-get update && \
   # install/update packages
-  apk add --update \
+  apt-get install -y \
+    apt-utils \
     ca-certificates \
     bash \
     wget \
     curl \
     tar && \
-  rm -rf /var/cache/apk/*
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
 
 # install gauge
 ARG GAUGE_VERSION

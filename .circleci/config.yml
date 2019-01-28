@@ -8,8 +8,6 @@ jobs:
       - run:
           name: Build Image
           command: |
-            export CIRCLE_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)
-            echo $CIRCLE_TAG
             make
   deploy:
     machine:
