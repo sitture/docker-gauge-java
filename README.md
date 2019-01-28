@@ -12,7 +12,7 @@ __Note:__ The `latest` tagged image is now built on top `Java 11`. You can get `
 
 Here are all the [supported tags](https://hub.docker.com/r/sitture/docker-gauge-java/tags/) of the image.
 
-The current `latest` version of the image is built on top of `JDK 11`. You can get Java 8 variants of the image by includes:
+The current `latest` version of the image is built on top of `JDK 11`. You can get jdk variants of the image with `jdk-8` or `jdk-11` tags.
 
 - Gauge [Latest](https://github.com/getgauge/gauge/releases)
     - Plugins `html-report, java, screenshot, spectacle, xml-report`
