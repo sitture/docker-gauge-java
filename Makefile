@@ -13,7 +13,9 @@ docker_build:
 	--build-arg VCS_REF=`git rev-parse --short HEAD` \
 	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 	--build-arg GAUGE_VERSION=$(CIRCLE_TAG) \
-	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1) jdk11/
+	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1)
+	-t $(DOCKER_IMAGE):$(CIRCLE_TAG)
+	-t $(DOCKER_IMAGE):latest jdk11/
 
 docker_build_jdk8:
 	@echo $(CIRCLE_TAG)
@@ -22,13 +24,10 @@ docker_build_jdk8:
 	--build-arg VCS_REF=`git rev-parse --short HEAD` \
 	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 	--build-arg GAUGE_VERSION=$(CIRCLE_TAG) \
-	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1)-$(JDK8_TAG) jdk8/
+	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1)-$(JDK8_TAG)
+	-t $(DOCKER_IMAGE):$(CIRCLE_TAG)-$(JDK8_TAG) jdk8/
 
 docker_push:
-	# Tag image as latest and version
-	docker tag $(DOCKER_IMAGE):$(CIRCLE_SHA1) $(DOCKER_IMAGE):latest
-	docker tag $(DOCKER_IMAGE):$(CIRCLE_SHA1) $(DOCKER_IMAGE):$(CIRCLE_TAG)
-	docker tag $(DOCKER_IMAGE):$(CIRCLE_SHA1)-$(JDK8_TAG) $(DOCKER_IMAGE):$(CIRCLE_TAG)-$(JDK8_TAG)
 	# Push images
 	docker push $(DOCKER_IMAGE):latest
 	docker push $(DOCKER_IMAGE):$(CIRCLE_TAG)
