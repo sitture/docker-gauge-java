@@ -35,6 +35,7 @@ RUN wget -qnc "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSI
   rm -rf $GAUGE_ARCHIVE && \
   # turn off telemetry
   gauge telemetry off && \
+  gauge config plugin_kill_timeout 30000 && \
   # install gauge plugins
   gauge install java && \
   gauge install html-report && \
