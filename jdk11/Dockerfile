@@ -40,7 +40,7 @@ RUN wget -qnc "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSI
   gauge telemetry off && \
   # install gauge plugins
   gauge install java && \
-  gauge install html-report && \
+  gauge install html-report --version 4.0.6 && \
   gauge install xml-report && \
   gauge install spectacle && \
   gauge install screenshot && gauge -v
