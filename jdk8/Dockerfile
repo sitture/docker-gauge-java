@@ -28,6 +28,7 @@ RUN apk update && \
 ARG GAUGE_VERSION
 ENV GAUGE_VERSION $GAUGE_VERSION
 ENV GAUGE_ARCHIVE gauge-$GAUGE_VERSION-linux.x86_64.zip
+ENV GAUGE_TELEMETRY_ENABLED false
 
 RUN wget -qnc "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSION/$GAUGE_ARCHIVE" && \
   # example release url https://github.com/getgauge/gauge/releases/download/v1.0.0/gauge-1.0.0-linux.x86_64.zip
@@ -35,7 +36,6 @@ RUN wget -qnc "https://github.com/getgauge/gauge/releases/download/v$GAUGE_VERSI
   rm -rf $GAUGE_ARCHIVE && \
   # turn off telemetry
   gauge telemetry off && \
-  gauge config plugin_kill_timeout 30000 && \
   # install gauge plugins
   gauge install java && \
   gauge install html-report && \
