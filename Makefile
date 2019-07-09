@@ -17,6 +17,7 @@ docker_build:
 	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_TAG) \
 	-t $(DOCKER_IMAGE):$(JDK11_TAG) \
+	-t $(DOCKER_IMAGE):$(CIRCLE_TAG)-$(JDK11_TAG) \
 	-t $(DOCKER_IMAGE):latest jdk11/
 
 docker_build_jdk8:
@@ -35,6 +36,7 @@ docker_push:
 	docker push $(DOCKER_IMAGE):latest
 	docker push $(DOCKER_IMAGE):$(CIRCLE_TAG)
 	docker push $(DOCKER_IMAGE):$(JDK11_TAG)
+	docker push $(DOCKER_IMAGE):$(CIRCLE_TAG)-$(JDK11_TAG)
 	docker push $(DOCKER_IMAGE):$(JDK8_TAG)
 	docker push $(DOCKER_IMAGE):$(CIRCLE_TAG)-$(JDK8_TAG)
 
