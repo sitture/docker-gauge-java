@@ -22,6 +22,7 @@ RUN apt-get update && \
     bash \
     wget \
     curl \
+    unzip \
     tar && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/*

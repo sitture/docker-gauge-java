@@ -21,6 +21,7 @@ RUN apk update && \
     bash \
     wget \
     curl \
+    unzip \
     tar && \
   rm -rf /var/cache/apk/*
 
