@@ -15,7 +15,7 @@ Here are all the [supported tags](https://hub.docker.com/r/sitture/docker-gauge-
 The current `latest` version of the image is built on top of `JDK 11`. You can get jdk variants of the image with `jdk-8` or `jdk-11` tags.
 
 - Gauge [Latest](https://github.com/getgauge/gauge/releases)
-    - Plugins `html-report, java, screenshot, spectacle, xml-report`
+    - Plugins `html-report, java, screenshot, spectacle, xml-report, [reportserver](https://github.com/sitture/gauge-reportserver)`
 - Maven 3
 - Additional tools: `bash, curl, wget, unzip, tar`
 
