@@ -47,7 +47,8 @@ RUN set -ex && \
     gauge install xml-report && \
     gauge install spectacle && \
     gauge install screenshot && \
-    gauge install reportserver && gauge -v
+    gauge install reportserver && \
+    gauge install reportportal && gauge -v
 
 WORKDIR /usr/src/app
 ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
