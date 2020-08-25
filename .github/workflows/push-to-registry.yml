@@ -16,7 +16,7 @@ jobs:
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
-          build_args: BUILD_DATE=${CURRENT_DATE},VERSION=${IMAGE_VERSION},GAUGE_VERSION=${IMAGE_VERSION},VCS_REF=${GITHUB_REF}
+          build_args: BUILD_DATE=${{ env.CURRENT_DATE }},VERSION=${{ env.IMAGE_VERSION }},GAUGE_VERSION=${{ env.IMAGE_VERSION }},VCS_REF=${{ env.GITHUB_REF }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
