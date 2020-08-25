@@ -15,5 +15,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
+          dockerfile: jdk11/Dockerfile
           repository: sitture/docker-gauge-java/docker-gauge-java
           tag_with_ref: true
