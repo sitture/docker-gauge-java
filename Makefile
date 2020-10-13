@@ -1,4 +1,4 @@
-default: docker_build docker_build_jdk8
+default: docker_build_base docker_build docker_build_jdk8
 
 CIRCLE_PROJECT_USERNAME ?= sitture
 CIRCLE_PROJECT_REPONAME ?= docker-gauge-java
@@ -8,12 +8,17 @@ CIRCLE_TAG ?= $$(git describe --tags `git rev-list --tags --max-count=1`)
 JDK8_TAG = jdk-8
 JDK11_TAG = jdk-11
 
-docker_build:
+docker_build_base:
 	@docker build \
 	--build-arg VERSION=$(CIRCLE_TAG) \
 	--build-arg VCS_REF=`git rev-parse --short HEAD` \
 	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 	--build-arg GAUGE_VERSION=$(CIRCLE_TAG) \
+	-t $(DOCKER_IMAGE)/base:${CIRCLE_TAG} base/
+
+docker_build:
+	@docker build \
+	--build-arg VERSION=$(CIRCLE_TAG) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_TAG) \
 	-t $(DOCKER_IMAGE):$(JDK11_TAG) \
@@ -21,12 +26,8 @@ docker_build:
 	-t $(DOCKER_IMAGE):latest jdk11/
 
 docker_build_jdk8:
-	@echo $(CIRCLE_TAG)
 	@docker build \
-	--build-arg VERSION=$(CIRCLE_TAG)-$(JDK8_TAG) \
-	--build-arg VCS_REF=`git rev-parse --short HEAD` \
-	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-	--build-arg GAUGE_VERSION=$(CIRCLE_TAG) \
+	--build-arg VERSION=$(CIRCLE_TAG) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1)-$(JDK8_TAG) \
 	-t $(DOCKER_IMAGE):$(JDK8_TAG) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_TAG)-$(JDK8_TAG) jdk8/
