@@ -9,14 +9,15 @@ jobs:
     steps:
       - name: Set env variables
         run: |
-          echo "::set-env name=CURRENT_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           echo "::set-env name=IMAGE_VERSION::${GITHUB_REF##*/}"
       - name: Check out the repo
         uses: actions/checkout@v2
+      - name: Build base Image
+        run: make docker_build_base
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
-          build_args: BUILD_DATE=${{ env.CURRENT_DATE }},VERSION=${{ env.IMAGE_VERSION }},GAUGE_VERSION=${{ env.IMAGE_VERSION }},VCS_REF=${{ env.GITHUB_REF }}
+          build_args: VERSION=${{ env.IMAGE_VERSION }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
