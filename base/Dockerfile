@@ -49,10 +49,7 @@ RUN set -ex && \
     # install gauge plugins
     gauge install java && \
     gauge install html-report && \
-    gauge install xml-report && \
-    gauge install spectacle && \
     gauge install screenshot && \
-    gauge install reportserver && \
     gauge install reportportal && gauge -v
 
 WORKDIR /usr/src/app

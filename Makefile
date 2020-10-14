@@ -9,7 +9,7 @@ JDK8_TAG = jdk-8
 JDK11_TAG = jdk-11
 
 docker_build_base:
-	@docker build \
+	@docker build --pull \
 	--build-arg VERSION=$(CIRCLE_TAG) \
 	--build-arg VCS_REF=`git rev-parse --short HEAD` \
 	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
