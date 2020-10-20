@@ -49,6 +49,7 @@ RUN set -ex && \
     # install gauge plugins
     gauge install java && \
     gauge install html-report && \
+    gauge install xml-report && \
     gauge install screenshot && \
     gauge install reportportal && gauge -v
 
