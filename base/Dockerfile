@@ -18,7 +18,7 @@ ENV LANG C.UTF-8
 # OS updates & install dependencies
 RUN set -ex && \
     # install/update packages
-    apk add --no-cache --update ca-certificates \
+    apk add --no-cache --update ca-certificates libc6-compat \
         bash \
         wget \
         curl \
