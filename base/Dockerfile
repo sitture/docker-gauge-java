@@ -18,7 +18,9 @@ ENV LANG C.UTF-8
 # OS updates & install dependencies
 RUN set -ex && \
     # install/update packages
+    apk update --no-cache && \
     apk add --no-cache --update \
+        libc6-compat \
         ca-certificates \
         bash \
         wget \
@@ -26,6 +28,7 @@ RUN set -ex && \
         unzip \
         maven \
         tar && \
+    ln -s /lib/libc.musl-x86_64.so.1 /lib/ld-linux-x86-64.so.2 && \
     rm -rf /var/cache/apk/*
 
 # Configure maven
