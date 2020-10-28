@@ -20,7 +20,7 @@ RUN set -ex && \
     # install/update packages
     apk update --no-cache && \
     apk add --no-cache --update \
-        libc6-compat \
+        libc6-compat libstdc++ libintl \
         ca-certificates \
         bash \
         wget \
@@ -40,6 +40,9 @@ ENV MAVEN_CONFIG "/root/.m2"
 
 # Install gauge
 ARG GAUGE_VERSION
+ARG GAUGE_REPORTPORTAL_VERSION
+ENV GAUGE_REPORTPORTAL_VERSION $GAUGE_REPORTPORTAL_VERSION
+ENV GAUGE_REPORTPORTAL_ARCHIVE reportportal-$GAUGE_REPORTPORTAL_VERSION-linux-musl-x64.zip
 ENV GAUGE_VERSION $GAUGE_VERSION
 ENV GAUGE_ARCHIVE gauge-$GAUGE_VERSION-linux.x86_64.zip
 ENV GAUGE_TELEMETRY_ENABLED false
@@ -55,7 +58,10 @@ RUN set -ex && \
     gauge install html-report && \
     gauge install xml-report && \
     gauge install screenshot && \
-    gauge install reportportal && gauge -v
+    # Example reportportal download link https://github.com/reportportal/agent-net-gauge/releases/download/1.10.0/reportportal-1.10.0-linux-musl-x64.zip
+    wget -qnc -O $GAUGE_REPORTPORTAL_ARCHIVE https://github.com/reportportal/agent-net-gauge/releases/download/$GAUGE_REPORTPORTAL_VERSION/$GAUGE_REPORTPORTAL_ARCHIVE && \
+    gauge install reportportal --file $GAUGE_REPORTPORTAL_ARCHIVE && gauge -v && \
+    rm -rf $GAUGE_REPORTPORTAL_ARCHIVE
 
 WORKDIR /usr/src/app
 ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
