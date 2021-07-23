@@ -20,6 +20,7 @@ RUN set -ex && \
     # install/update packages
     apk update --no-cache && \
     apk add --no-cache --update \
+        krb5 \
         gcc musl-dev linux-headers \
         ca-certificates \
         bash \
