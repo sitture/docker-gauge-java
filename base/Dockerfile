@@ -54,7 +54,7 @@ RUN set -ex && \
     # do not check for updates
     gauge config check_updates false && \
     # install gauge plugins
-    gauge install java --version 0.7.15 && \
+    gauge install java && \
     gauge install html-report && \
     gauge install xml-report && \
     gauge install screenshot && \
