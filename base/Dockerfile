@@ -14,14 +14,13 @@ LABEL maintainer="Haroon Sheikh <haroon@sitture.com>" \
       schema-version="1.0"
 
 ENV LANG C.UTF-8
-ENV LD_PRELOAD /lib/libgcompat.so.0
 # OS updates & install dependencies
 RUN set -ex && \
     # install/update packages
     apk update --no-cache && \
     apk add --no-cache --update \
         krb5 \
-        gcc musl-dev linux-headers gcompat \
+        gcc musl-dev linux-headers \
         ca-certificates \
         bash \
         wget \
