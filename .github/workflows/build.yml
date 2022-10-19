@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Set env variables
         run: |
-          echo "GAUGE_LATEST_RELEASE=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_ENV
+          echo "GAUGE_LATEST_RELEASE=$(curl --silent "https://api.github.com/repos/sitture/docker-gauge-java/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')" >> $GITHUB_ENV
           echo "REPORTPORTAL_LATEST_RELEASE=$(curl --silent "https://api.github.com/repos/reportportal/agent-net-gauge/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')" >> $GITHUB_ENV
       -
         name: Set up QEMU
