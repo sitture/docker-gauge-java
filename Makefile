@@ -13,9 +13,6 @@ docker_buildx:
 
 docker_build:
 	@docker buildx build --progress=plain --pull \
-	--build-arg VERSION=$(CIRCLE_TAG) \
-	--build-arg VCS_REF=`git rev-parse --short HEAD` \
-	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 	--build-arg GAUGE_VERSION=$(CIRCLE_TAG) \
 	--build-arg GAUGE_REPORTPORTAL_VERSION=$(REPORTPORTAL_LATEST_RELEASE) \
 	--platform linux/arm64,linux/amd64 \
