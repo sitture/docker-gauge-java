@@ -1,4 +1,4 @@
-name: Build 
+name: Image 
 on:
   push:
     branches:
@@ -8,7 +8,7 @@ on:
       - 'master'
 jobs:
   build:
-    name: Build
+    name: push
     runs-on: ubuntu-latest
     steps:
       -
@@ -30,7 +30,6 @@ jobs:
             name=ghcr.io/sitture/docker-gauge-java
           tags: |
             type=semver,pattern={{version}}
-            type=sha
       -
         name: Build and push
         uses: docker/build-push-action@v3
@@ -39,6 +38,6 @@ jobs:
             VERSION=localhost:5000/my-project/base
           context: jdk11/
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.event_name == 'release' && github.event.action == 'published' }}
+          push: false
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
