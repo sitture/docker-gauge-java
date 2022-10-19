@@ -1,4 +1,4 @@
-default: docker_build_base docker_build docker_build_jdk8
+default: docker_build_base docker_build
 
 CIRCLE_PROJECT_USERNAME ?= sitture
 CIRCLE_PROJECT_REPONAME ?= docker-gauge-java
