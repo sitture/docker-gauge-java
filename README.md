@@ -1,8 +1,8 @@
 # sitture / docker-gauge-java
 
-[![CircleCI](https://circleci.com/gh/sitture/docker-gauge-java.svg?style=shield)](https://circleci.com/gh/sitture/docker-gauge-java) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?maxAge=2592000)](https://opensource.org/licenses/MIT) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](../../issues)
+[![CircleCI](https://circleci.com/gh/sitture/docker-gauge-java.svg?style=shield)](https://circleci.com/gh/sitture/docker-gauge-java) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?maxAge=2592000)](https://opensource.org/licenses/MIT) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](../../issues) [![Docker Pulls](https://img.shields.io/docker/pulls/sitture/docker-gauge-java.svg?style=round-square)](https://hub.docker.com/r/sitture/docker-gauge-java) [![Docker Stars](https://img.shields.io/docker/stars/sitture/docker-gauge-java.svg)](https://hub.docker.com/r/sitture/docker-gauge-java)
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/sitture/docker-gauge-java.svg?style=round-square)](https://hub.docker.com/r/sitture/docker-gauge-java) [![Docker Stars](https://img.shields.io/docker/stars/sitture/docker-gauge-java.svg)](https://hub.docker.com/r/sitture/docker-gauge-java)
+[![Gauge Badge](https://gauge.org/Gauge_Badge.svg)](https://gauge.org/)
 
 An alpine based docker maven image with [Gauge](https://gauge.org) from [ThoughtWorks](https://www.thoughtworks.com) installed for running BDD style [gauge-java](https://github.com/getgauge/gauge-java) test suites.
 
@@ -13,8 +13,6 @@ __Note:__ The `latest` tagged image is now built on top `Java 11`. You can get `
 Here are all the [supported tags](https://hub.docker.com/r/sitture/docker-gauge-java/tags/) of the image.
 
 The current `latest` version of the image is built on top of `JDK 11`. You can get jdk variants of the image with `jdk-8` or `jdk-11` tags.
-
-[![Gauge Badge](https://gauge.org/Gauge_Badge.svg)](https://gauge.org/)
 
 - Gauge [Latest](https://github.com/getgauge/gauge/releases)
     - Plugins `html-report, java, screenshot, spectacle, xml-report, [reportserver](https://github.com/sitture/gauge-reportserver)`
