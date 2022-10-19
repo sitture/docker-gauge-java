@@ -1,4 +1,4 @@
-default: docker_build_base docker_build
+default: docker_build
 
 CIRCLE_PROJECT_USERNAME ?= sitture
 CIRCLE_PROJECT_REPONAME ?= docker-gauge-java
@@ -8,18 +8,14 @@ CIRCLE_TAG ?= $$(git describe --tags `git rev-list --tags --max-count=1`)
 JDK11_TAG = jdk-11
 REPORTPORTAL_LATEST_RELEASE = $$(curl --silent "https://api.github.com/repos/reportportal/agent-net-gauge/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
-docker_build_base:
-	@docker build --pull \
+docker_build:
+	@docker buildx build --progress=plain --pull \
 	--build-arg VERSION=$(CIRCLE_TAG) \
 	--build-arg VCS_REF=`git rev-parse --short HEAD` \
 	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 	--build-arg GAUGE_VERSION=$(CIRCLE_TAG) \
 	--build-arg GAUGE_REPORTPORTAL_VERSION=$(REPORTPORTAL_LATEST_RELEASE) \
-	-t $(DOCKER_IMAGE)/base:${CIRCLE_TAG} base/
-
-docker_build:
-	@docker build \
-	--build-arg VERSION=$(CIRCLE_TAG) \
+	--platform linux/arm64,linux/amd64 \
 	-t $(DOCKER_IMAGE):$(CIRCLE_SHA1) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_TAG) \
 	-t $(DOCKER_IMAGE):$(JDK11_TAG) \
