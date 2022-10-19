@@ -1,4 +1,4 @@
-name: Image 
+name: Build Image 
 on:
   push:
     branches:
@@ -8,7 +8,7 @@ on:
       - 'master'
 jobs:
   build:
-    name: push
+    name: Build
     runs-on: ubuntu-latest
     steps:
       -
