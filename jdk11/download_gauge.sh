@@ -6,22 +6,18 @@ download() {
     tmp="$(ensure mktemp -d)"
     ensure cd "$tmp"
 
-    gauge_archive=gauge-${GAUGE_VERSION}-${OS}.${ARCH}.zip
-    url="https://github.com/getgauge/gauge/releases/download/v${GAUGE_VERSION}/${gauge_archive}"
+    GAUGE_ARCHIVE=gauge-${GAUGE_VERSION}-${OS}.${ARCH}.zip
+    url="https://github.com/getgauge/gauge/releases/download/v${GAUGE_VERSION}/${GAUGE_ARCHIVE}"
     say "Downloading binary from URL:$url"
-    ensure curl -L -o $gauge_archive $url
+    ensure wget -qnc $url
     verbose_say "Downloaded the binary to dir:$tmp"
-
-    # unzip and copy the binary to the original directory
-    ensure unzip -q ${gauge_archive}
-
     verbose_say "Copying the binary to $LOCATION"
     if [ -w $LOCATION ]; then
         mkdir -p "$LOCATION"
-        ensure cp ./gauge "$LOCATION/"
+        unzip $GAUGE_ARCHIVE -d "$LOCATION/"
     else
         echo "You do not have write permision for $LOCATION. Trying with sudo."
-        sudo cp ./gauge "$LOCATION/"
+        sudo unzip $GAUGE_ARCHIVE -d "$LOCATION/"
     fi
 
     ensure cd "$CWD"
@@ -134,7 +130,7 @@ get_value_arg() {
 
 assert_cmds_available() {
     need_cmd echo
-    need_cmd curl
+    need_cmd wget
     need_cmd mktemp
     need_cmd mkdir
     need_cmd pwd
