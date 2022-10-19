@@ -1,4 +1,4 @@
-name: Publish to Registry
+name: Build and Push 
 on:
   pull_request:
     branches:
@@ -6,8 +6,8 @@ on:
   release:
     types: [published]
 jobs:
-  push_to_registry:
-    name: Push Docker Image to GitHub Packages
+  build_and_push:
+    name: Build and Push
     runs-on: ubuntu-latest
     steps:
       -
