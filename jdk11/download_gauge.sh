@@ -6,13 +6,14 @@ download() {
     tmp="$(ensure mktemp -d)"
     ensure cd "$tmp"
 
-    url="https://github.com/getgauge/gauge/releases/download/v${GAUGE_VERSION}/gauge-${GAUGE_VERSION}-${OS}.${ARCH}.zip"
+    gauge_archive=gauge-${GAUGE_VERSION}-${OS}.${ARCH}.zip
+    url="https://github.com/getgauge/gauge/releases/download/v${GAUGE_VERSION}/${gauge_archive}"
     say "Downloading binary from URL:$url"
-    ensure curl -L -o gauge.zip $url
+    ensure curl -L -o $gauge_archive $url
     verbose_say "Downloaded the binary to dir:$tmp"
 
     # unzip and copy the binary to the original directory
-    ensure unzip -q gauge.zip
+    ensure unzip -q ${gauge_archive}
 
     verbose_say "Copying the binary to $LOCATION"
     if [ -w $LOCATION ]; then
