@@ -1,0 +1,44 @@
+name: Build 
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            name=sitture/docker-gauge-java
+            name=ghcr.io/sitture/docker-gauge-java
+          tags: |
+            type=semver,pattern={{version}}
+            type=sha
+      -
+        name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          build-args: |
+            VERSION=localhost:5000/my-project/base
+          context: jdk11/
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name == 'release' && github.event.action == 'published' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
