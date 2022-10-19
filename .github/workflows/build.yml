@@ -30,6 +30,7 @@ jobs:
             name=ghcr.io/sitture/docker-gauge-java
           tags: |
             type=semver,pattern={{version}}
+            type=sha
       -
         name: Build and push
         uses: docker/build-push-action@v3
