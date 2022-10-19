@@ -8,11 +8,9 @@ An alpine based docker maven image with [Gauge](https://gauge.org) from [Thought
 
 The docker image tagging is based on the [version of Gauge](https://github.com/getgauge/gauge/releases). E.g. The `sitture/docker-gauge-java:latest` tag will always contain the latest version of gauge and `sitture/docker-gauge-java:1.0.0` tag will contain version `1.0.0` of gauge.
 
-__Note:__ The `latest` tagged image is now built on top `Java 11`.
-
 Here are all the [supported tags](https://hub.docker.com/r/sitture/docker-gauge-java/tags/) of the image.
 
-The current `latest` version of the image is built on top of `JDK 11`.
+__Note:__ The current `latest` version of the image is built on top of `JDK 11`.
 
 - Gauge [Latest](https://github.com/getgauge/gauge/releases)
     - Plugins `html-report, java, screenshot, spectacle, xml-report, [reportserver](https://github.com/sitture/gauge-reportserver)`
