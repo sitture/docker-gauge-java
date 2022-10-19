@@ -10,7 +10,7 @@ The docker image tagging is based on the [version of Gauge](https://github.com/g
 
 Here are all the [supported tags](https://hub.docker.com/r/sitture/docker-gauge-java/tags/) of the image.
 
-__Note:__ The current `latest` version of the image is built on top of `JDK 1dock1`.
+__Note:__ The current `latest` version of the image is built on top of `JDK 11`.
 
 - Gauge [Latest](https://github.com/getgauge/gauge/releases)
     - Plugins `html-report, java, screenshot, spectacle, xml-report, [reportserver](https://github.com/sitture/gauge-reportserver)`
