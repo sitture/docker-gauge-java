@@ -19,6 +19,8 @@ The current `latest` version of the image is built on top of `JDK 11`. You can g
 - Maven 3
 - Additional tools: `bash, curl, wget, unzip, tar`
 
+[![Gauge Badge](https://gauge.org/Gauge_Badge.svg)](https://gauge.org/)
+
 ## Usage
 
 Pull the latest Image with
