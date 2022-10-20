@@ -10,6 +10,11 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
+      - 
+        name: Set env variables
+        run: |
+          echo "GAUGE_LATEST_RELEASE=${GITHUB_REF##*/}" >> $GITHUB_ENV
+          echo "REPORTPORTAL_LATEST_RELEASE=$(curl --silent "https://api.github.com/repos/reportportal/agent-net-gauge/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')" >> $GITHUB_ENV
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -39,13 +44,14 @@ jobs:
             name=ghcr.io/sitture/docker-gauge-java
           tags: |
             type=semver,pattern={{version}}
-            type=sha
+            type=semver,pattern={{major}}.{{minor}}
       -
         name: Build and push
         uses: docker/build-push-action@v3
         with:
           build-args: |
-            VERSION=localhost:5000/my-project/base
+            GAUGE_VERSION=${{ env.GAUGE_LATEST_RELEASE }}
+            GAUGE_REPORTPORTAL_VERSION=${{ env.REPORTPORTAL_LATEST_RELEASE }}
           context: jdk11/
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name == 'release' && github.event.action == 'published' }}
