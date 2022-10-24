@@ -5,7 +5,7 @@ CIRCLE_PROJECT_REPONAME ?= docker-gauge-java
 DOCKER_IMAGE = $(CIRCLE_PROJECT_USERNAME)/$(CIRCLE_PROJECT_REPONAME)
 CIRCLE_SHA1 ?= $$(git rev-parse --verify HEAD)
 CIRCLE_TAG ?= $$(git describe --tags `git rev-list --tags --max-count=1`)
-JDK11_TAG = jdk-11
+JDK11_TAG = openjdk-11
 REPORTPORTAL_LATEST_RELEASE = $$(curl --silent "https://api.github.com/repos/reportportal/agent-net-gauge/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 
 docker_buildx:
@@ -20,7 +20,7 @@ docker_build:
 	-t $(DOCKER_IMAGE):$(CIRCLE_TAG) \
 	-t $(DOCKER_IMAGE):$(JDK11_TAG) \
 	-t $(DOCKER_IMAGE):$(CIRCLE_TAG)-$(JDK11_TAG) \
-	-t $(DOCKER_IMAGE):latest jdk11/
+	-t $(DOCKER_IMAGE):latest openjdk-11/
 
 docker_push:
 	# Push images

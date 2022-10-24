@@ -1,0 +1,14 @@
+name: openjdk-11
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
+jobs:
+  build:
+    uses: ./.github/workflows/_build-template.yml
+    with:
+      directory: openjdk-11
+    secrets: inherit

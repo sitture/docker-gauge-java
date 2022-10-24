@@ -1,11 +1,10 @@
-name: Build Image 
 on:
-  push:
-    branches:
-      - 'master'
-  pull_request:
-    branches:
-      - 'master'
+  workflow_call:
+    inputs:
+      directory:
+        required: true
+        type: string
+
 jobs:
   build:
     name: Build
@@ -14,7 +13,7 @@ jobs:
       -
         name: Checkout
         uses: actions/checkout@v3
-      - 
+      -
         name: Set env variables
         run: |
           echo "GAUGE_LATEST_RELEASE=$(curl --silent "https://api.github.com/repos/sitture/docker-gauge-java/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')" >> $GITHUB_ENV
@@ -35,8 +34,25 @@ jobs:
             name=ghcr.io/sitture/docker-gauge-java
           tags: |
             type=semver,pattern={{version}}
+            type=semver,pattern={{version}},suffix=-{{ inputs.directory }}
             type=semver,pattern={{major}}.{{minor}}
-            type=sha
+            type=ref,event=tag,suffix=-${{ inputs.directory }}
+            type=ref,event=pr,prefix=pr-,suffix=-${{ inputs.directory }}
+      -
+        name: Login to Docker Hub
+        if: github.event_name == 'release' && github.event.action == 'published'
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Login to GitHub Container Registry
+        if: github.event_name == 'release' && github.event.action == 'published'
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       -
         name: Build and push
         uses: docker/build-push-action@v3
@@ -44,8 +60,8 @@ jobs:
           build-args: |
             GAUGE_VERSION=${{ env.GAUGE_LATEST_RELEASE }}
             GAUGE_REPORTPORTAL_VERSION=${{ env.REPORTPORTAL_LATEST_RELEASE }}
-          context: jdk11/
+          context: ${{ inputs.directory }}
           platforms: linux/amd64,linux/arm64
-          push: false
+          push: ${{ github.event_name == 'release' && github.event.action == 'published' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
