@@ -60,7 +60,7 @@ jobs:
           build-args: |
             GAUGE_VERSION=${{ env.GAUGE_LATEST_RELEASE }}
             GAUGE_REPORTPORTAL_VERSION=${{ env.REPORTPORTAL_LATEST_RELEASE }}
-          context: jdk11/
+          context: ${{ inputs.directory }}
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name == 'release' && github.event.action == 'published' }}
           tags: ${{ steps.meta.outputs.tags }}
