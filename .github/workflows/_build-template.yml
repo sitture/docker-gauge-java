@@ -36,7 +36,7 @@ jobs:
             type=semver,pattern={{version}}
             type=semver,pattern={{version}},suffix=-{{ inputs.directory }}
             type=semver,pattern={{major}}.{{minor}}
-            type=ref,event=tag,suffix=-${{ inputs.directory }}
+            type=ref,event=release,suffix=-${{ inputs.directory }}
             type=ref,event=pr,prefix=pr-,suffix=-${{ inputs.directory }}
       -
         name: Login to Docker Hub

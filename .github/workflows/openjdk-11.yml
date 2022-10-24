@@ -1,5 +1,7 @@
 name: openjdk-11
 on:
+  release:
+    types: [published]
   push:
     branches:
       - 'master'
