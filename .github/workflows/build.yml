@@ -36,7 +36,7 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{version}},prefix={{ inputs.directory }}
+            type=raw,pattern={{version}},prefix={{ inputs.directory }}
             type=sha
       -
         name: Build and push
