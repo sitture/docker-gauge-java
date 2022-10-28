@@ -46,6 +46,8 @@ RUN set -ex && pwd && \
     gauge install html-report && \
     # gauge install xml-report && \ Waiting for https://github.com/getgauge/xml-report/pull/43 to be released
     gauge install screenshot && \
+    gauge install reportserver && \
+    gauge install inprogress && \
     # Example reportportal download link https://github.com/reportportal/agent-net-gauge/releases/download/1.10.0/reportportal-1.10.0-linux-musl-x64.zip
     wget -qnc -O $GAUGE_REPORTPORTAL_ARCHIVE https://github.com/reportportal/agent-net-gauge/releases/download/$GAUGE_REPORTPORTAL_VERSION/$GAUGE_REPORTPORTAL_ARCHIVE && \
     gauge install reportportal --file $GAUGE_REPORTPORTAL_ARCHIVE && gauge -v && \
