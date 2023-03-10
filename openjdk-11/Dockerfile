@@ -44,7 +44,7 @@ RUN set -ex && pwd && \
     # install gauge plugins
     gauge install java && \
     gauge install html-report && \
-    # gauge install xml-report && \ Waiting for https://github.com/getgauge/xml-report/pull/43 to be released
+    gauge install xml-report && \
     gauge install screenshot && \
     gauge install reportserver && \
     gauge install inprogress && \
