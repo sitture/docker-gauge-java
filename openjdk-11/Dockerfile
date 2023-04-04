@@ -22,7 +22,7 @@ RUN set -ex && \
 
 # Configure maven
 COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
-COPY settings-docker.xml /usr/share/maven/ref/
+COPY settings-docker.xml /usr/share/maven/ref/settings-docker.xml
 
 RUN chmod +x /usr/local/bin/mvn-entrypoint.sh
 ENV MAVEN_CONFIG "/root/.m2"
