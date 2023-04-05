@@ -35,9 +35,8 @@ jobs:
           flavour: |
             latest=false
           tags: |
-            type=semver,pattern={{version}}
             type=semver,pattern={{version}},suffix=-${{ inputs.directory }}
-            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{version}},enable=${{ inputs.directory == 'openjdk-11' }}
             type=raw,value=latest,enable=${{ inputs.directory == 'openjdk-11' }}
             type=ref,event=pr,prefix=pr-,suffix=-${{ inputs.directory }}
       -
