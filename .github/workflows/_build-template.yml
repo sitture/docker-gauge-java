@@ -35,7 +35,7 @@ jobs:
           images: |
             name=sitture/docker-gauge-java
             name=ghcr.io/sitture/docker-gauge-java
-          flavour: |
+          flavor: |
             latest=false
           tags: |
             type=raw,value=latest,enable=${{ inputs.directory == 'openjdk-11' }},priority=1000
