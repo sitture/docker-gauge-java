@@ -25,7 +25,7 @@ RUN chmod +x /usr/local/bin/mvn-entrypoint.sh
 ENV MAVEN_CONFIG "/root/.m2"
 
 # Install gauge
-COPY download_gauge.sh /
+COPY download_gauge.sh /download_gauge.sh
 ARG GAUGE_VERSION
 ENV GAUGE_VERSION $GAUGE_VERSION
 ENV GAUGE_TELEMETRY_ENABLED false

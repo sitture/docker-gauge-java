@@ -32,10 +32,13 @@ jobs:
           images: |
             name=sitture/docker-gauge-java
             name=ghcr.io/sitture/docker-gauge-java
+          flavour: |
+            latest=false
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{version}},suffix=-${{ inputs.directory }}
             type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest,enable=${{ inputs.directory == 'openjdk-11' }}
             type=ref,event=pr,prefix=pr-,suffix=-${{ inputs.directory }}
       -
         name: Login to Docker Hub
