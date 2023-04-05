@@ -13,4 +13,5 @@ jobs:
     uses: ./.github/workflows/_build-template.yml
     with:
       directory: jdk-17
+      default_image: true
     secrets: inherit

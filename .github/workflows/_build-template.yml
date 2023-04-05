@@ -4,6 +4,9 @@ on:
       directory:
         required: true
         type: string
+      default_image:
+        required: true
+        type: string
 
 jobs:
   build:
@@ -35,9 +38,10 @@ jobs:
           flavour: |
             latest=false
           tags: |
-            type=semver,pattern={{version}},suffix=-${{ inputs.directory }}
-            type=semver,pattern={{version}},enable=${{ inputs.directory == 'openjdk-11' }}
-            type=raw,value=latest,enable=${{ inputs.directory == 'openjdk-11' }}
+            type=raw,value=latest,enable=${{ inputs.directory == 'openjdk-11' }},priority=1000
+            type=semver,pattern={{version}},enable=${{ inputs.default_image }},priority=900
+            type=semver,pattern={{major}}.{{minor}},enable=${{ inputs.default_image }},priority=800
+            type=semver,pattern={{version}},suffix=-${{ inputs.directory }},priority=700
             type=ref,event=pr,prefix=pr-,suffix=-${{ inputs.directory }}
       -
         name: Login to Docker Hub
