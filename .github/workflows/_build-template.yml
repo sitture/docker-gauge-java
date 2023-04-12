@@ -39,7 +39,7 @@ jobs:
             latest=false
           tags: |
             type=raw,value=latest,enable=${{ inputs.directory == 'openjdk-11' }},priority=1000
-            type=raw,value=${{ inputs.directory }},priority=1000
+            type=raw,value=${{ inputs.directory }}
             type=semver,pattern={{version}},enable=${{ inputs.default_image }},priority=900
             type=semver,pattern={{major}}.{{minor}},enable=${{ inputs.default_image }},priority=800
             type=semver,pattern={{version}},suffix=-${{ inputs.directory }},priority=700
