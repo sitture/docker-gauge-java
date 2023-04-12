@@ -18,14 +18,14 @@ RUN set -ex && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Configure maven
-COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
-COPY settings-docker.xml /usr/share/maven/ref/settings-docker.xml
+COPY build/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
+COPY build/settings-docker.xml /usr/share/maven/ref/settings-docker.xml
 
 RUN chmod +x /usr/local/bin/mvn-entrypoint.sh
 ENV MAVEN_CONFIG "/root/.m2"
 
 # Install gauge
-COPY download_gauge.sh /download_gauge.sh
+COPY build/download_gauge.sh /download_gauge.sh
 ARG GAUGE_VERSION
 ENV GAUGE_VERSION $GAUGE_VERSION
 ENV GAUGE_TELEMETRY_ENABLED false
