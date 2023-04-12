@@ -39,6 +39,7 @@ jobs:
             latest=false
           tags: |
             type=raw,value=latest,enable=${{ inputs.directory == 'openjdk-11' }},priority=1000
+            type=raw,value=${{ inputs.directory }},priority=1000
             type=semver,pattern={{version}},enable=${{ inputs.default_image }},priority=900
             type=semver,pattern={{major}}.{{minor}},enable=${{ inputs.default_image }},priority=800
             type=semver,pattern={{version}},suffix=-${{ inputs.directory }},priority=700
@@ -65,7 +66,8 @@ jobs:
           build-args: |
             GAUGE_VERSION=${{ env.GAUGE_LATEST_RELEASE }}
             GAUGE_REPORTPORTAL_VERSION=${{ env.REPORTPORTAL_LATEST_RELEASE }}
-          context: ${{ inputs.directory }}
+          context: .
+          file: ${{ inputs.directory }}/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name == 'release' && github.event.action == 'published' }}
           tags: ${{ steps.meta.outputs.tags }}

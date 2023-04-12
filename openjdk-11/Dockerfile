@@ -21,14 +21,14 @@ RUN set -ex && \
     rm -rf /var/cache/apk/*
 
 # Configure maven
-COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
-COPY settings-docker.xml /usr/share/maven/ref/settings-docker.xml
+COPY build/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
+COPY build/settings-docker.xml /usr/share/maven/ref/settings-docker.xml
 
 RUN chmod +x /usr/local/bin/mvn-entrypoint.sh
 ENV MAVEN_CONFIG "/root/.m2"
 
 # Install gauge
-COPY download_gauge.sh /download_gauge.sh
+COPY build/download_gauge.sh /download_gauge.sh
 ARG GAUGE_VERSION
 ARG GAUGE_REPORTPORTAL_VERSION
 ENV GAUGE_REPORTPORTAL_VERSION $GAUGE_REPORTPORTAL_VERSION
