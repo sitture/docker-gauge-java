@@ -63,6 +63,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
+          provenance: false
           build-args: |
             GAUGE_VERSION=${{ env.GAUGE_LATEST_RELEASE }}
             GAUGE_REPORTPORTAL_VERSION=${{ env.REPORTPORTAL_LATEST_RELEASE }}
