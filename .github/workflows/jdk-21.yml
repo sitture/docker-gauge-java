@@ -1,4 +1,4 @@
-name: jdk-17
+name: jdk-21
 on:
   release:
     types: [published]
