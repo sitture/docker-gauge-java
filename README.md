@@ -25,6 +25,16 @@ Pull the latest Image with
 docker pull sitture/docker-gauge-java:latest
 ```
 
+Or you can build an image with remote Dockerfile:
+
+```bash
+docker build --progress=plain --pull \
+	--build-arg BASE_IMAGE_TAG=21-jdk \
+	--build-arg GAUGE_VERSION=1.6.4 \
+	-t sitture/docker-gauge-java:latest \
+  "github.com/sitture/docker-gauge-java.git#:eclipse-temurin"
+```
+
 ### Using `docker run`
 
 ```bash
