@@ -26,7 +26,7 @@ docker_build:
 docker_build_jdk17:
 	@docker buildx build --progress=plain --pull \
 	--file eclipse-temurin/Dockerfile \
-	--build-arg BASE_IMAGE_TAG=17-jdk
+	--build-arg BASE_IMAGE_TAG=17-jdk \
 	--build-arg GAUGE_VERSION=$(TAG) \
 	--build-arg GAUGE_REPORTPORTAL_VERSION=$(REPORTPORTAL_LATEST_RELEASE) \
 	--platform linux/arm64,linux/amd64 \
@@ -37,7 +37,7 @@ docker_build_jdk17:
 docker_build_jdk21:
 	@docker buildx build --progress=plain --pull \
 	--file eclipse-temurin/Dockerfile \
-	--build-arg BASE_IMAGE_TAG=21-jdk
+	--build-arg BASE_IMAGE_TAG=21-jdk \
 	--build-arg GAUGE_VERSION=$(TAG) \
 	--build-arg GAUGE_REPORTPORTAL_VERSION=$(REPORTPORTAL_LATEST_RELEASE) \
 	--platform linux/arm64,linux/amd64 \
