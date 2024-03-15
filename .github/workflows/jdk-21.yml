@@ -1,0 +1,17 @@
+name: jdk-17
+on:
+  release:
+    types: [published]
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
+jobs:
+  build:
+    uses: ./.github/workflows/_build-template.yml
+    with:
+      base_image_version: 21-jdk
+      image_version: jdk-21
+    secrets: inherit
