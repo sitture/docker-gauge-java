@@ -2,11 +2,19 @@ on:
   workflow_call:
     inputs:
       directory:
+        default: 'eclipse-temurin'
+        required: false
+        type: string 
+      base_image_version:
+        required: true
+        type: string
+      image_version:
         required: true
         type: string
       default_image:
+        default: false
         required: true
-        type: string
+        type: boolean
 
 jobs:
   build:
@@ -38,12 +46,12 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            type=raw,value=latest,enable=${{ inputs.directory == 'openjdk-11' }},priority=1000
-            type=raw,value=${{ inputs.directory }}
+            type=raw,value=latest,enable=${{ inputs.default_image }},priority=1000
+            type=raw,value=${{ inputs.image_version }}
             type=semver,pattern={{version}},enable=${{ inputs.default_image }},priority=900
             type=semver,pattern={{major}}.{{minor}},enable=${{ inputs.default_image }},priority=800
-            type=semver,pattern={{version}},suffix=-${{ inputs.directory }},priority=700
-            type=ref,event=pr,prefix=pr-,suffix=-${{ inputs.directory }}
+            type=semver,pattern={{version}},suffix=-${{ inputs.image_version }},priority=700
+            type=ref,event=pr,prefix=pr-,suffix=-${{ inputs.image_version }}
       -
         name: Login to Docker Hub
         if: github.event_name == 'release' && github.event.action == 'published'
@@ -65,6 +73,7 @@ jobs:
         with:
           provenance: false
           build-args: |
+            BASE_IMAGE_TAG=${{ inputs.base_image_version }}
             GAUGE_VERSION=${{ env.GAUGE_LATEST_RELEASE }}
             GAUGE_REPORTPORTAL_VERSION=${{ env.REPORTPORTAL_LATEST_RELEASE }}
           context: .

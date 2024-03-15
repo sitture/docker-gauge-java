@@ -13,5 +13,6 @@ jobs:
     uses: ./.github/workflows/_build-template.yml
     with:
       directory: openjdk-11
-      default_image: false
+      base_image_version: openjdk-11
+      image_version: openjdk-11
     secrets: inherit
