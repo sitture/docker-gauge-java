@@ -1,4 +1,5 @@
-FROM eclipse-temurin:17-jdk
+ARG BASE_IMAGE_TAG
+FROM eclipse-temurin:${BASE_IMAGE_TAG}
 
 # Build-time metadata as defined at http://label-schema.org
 
