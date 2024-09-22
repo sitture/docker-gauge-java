@@ -3,7 +3,7 @@ FROM eclipse-temurin:${BASE_IMAGE_TAG}
 
 # Build-time metadata as defined at http://label-schema.org
 
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 # OS updates & install dependencies
 RUN set -ex && \
     # install/update packages
@@ -23,13 +23,13 @@ COPY build/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY build/settings-docker.xml /usr/share/maven/ref/settings-docker.xml
 
 RUN chmod +x /usr/local/bin/mvn-entrypoint.sh
-ENV MAVEN_CONFIG "/root/.m2"
+ENV MAVEN_CONFIG="/root/.m2"
 
 # Install gauge
 COPY build/download_gauge.sh /download_gauge.sh
 ARG GAUGE_VERSION
-ENV GAUGE_VERSION $GAUGE_VERSION
-ENV GAUGE_TELEMETRY_ENABLED false
+ENV GAUGE_VERSION=$GAUGE_VERSION
+ENV GAUGE_TELEMETRY_ENABLED=false
 RUN set -ex && pwd && \
     /download_gauge.sh --version=${GAUGE_VERSION} && \
     rm -rf download_gauge.sh && \

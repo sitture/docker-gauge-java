@@ -19,9 +19,9 @@ docker_build:
 	--build-arg GAUGE_VERSION=$(TAG) \
 	--build-arg GAUGE_REPORTPORTAL_VERSION=$(REPORTPORTAL_LATEST_RELEASE) \
 	--platform linux/arm64,linux/amd64 \
-	-t $(DOCKER_IMAGE):$(JDK11_TAG) \
-	-t $(DOCKER_IMAGE):$(TAG)-$(JDK11_TAG) \
-	-t $(DOCKER_IMAGE):latest .
+	--tag $(DOCKER_IMAGE):$(JDK11_TAG) \
+	--tag $(DOCKER_IMAGE):$(TAG)-$(JDK11_TAG) \
+	--tag $(DOCKER_IMAGE):latest .
 
 docker_build_jdk17:
 	@docker buildx build --progress=plain \
@@ -30,9 +30,9 @@ docker_build_jdk17:
 	--build-arg GAUGE_VERSION=$(TAG) \
 	--build-arg GAUGE_REPORTPORTAL_VERSION=$(REPORTPORTAL_LATEST_RELEASE) \
 	--platform linux/arm64,linux/amd64 \
-	-t $(DOCKER_IMAGE):$(TAG) \
-	-t $(DOCKER_IMAGE):$(JDK17_TAG) \
-	-t $(DOCKER_IMAGE):$(TAG)-$(JDK17_TAG) .
+	--tag $(DOCKER_IMAGE):$(TAG) \
+	--tag $(DOCKER_IMAGE):$(JDK17_TAG) \
+	--tag $(DOCKER_IMAGE):$(TAG)-$(JDK17_TAG) .
 
 docker_build_jdk21:
 	@docker buildx build --progress=plain \
@@ -41,6 +41,6 @@ docker_build_jdk21:
 	--build-arg GAUGE_VERSION=$(TAG) \
 	--build-arg GAUGE_REPORTPORTAL_VERSION=$(REPORTPORTAL_LATEST_RELEASE) \
 	--platform linux/arm64,linux/amd64 \
-	-t $(DOCKER_IMAGE):$(TAG) \
-	-t $(DOCKER_IMAGE):$(JDK21_TAG) \
-	-t $(DOCKER_IMAGE):$(TAG)-$(JDK21_TAG) .
+	--tag $(DOCKER_IMAGE):$(TAG) \
+	--tag $(DOCKER_IMAGE):$(JDK21_TAG) \
+	--tag $(DOCKER_IMAGE):$(TAG)-$(JDK21_TAG) .

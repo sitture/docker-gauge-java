@@ -2,7 +2,7 @@ FROM alpine:3.20.2
 
 # Build-time metadata as defined at http://label-schema.org
 
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 # OS updates & install dependencies
 RUN set -ex && \
     # install/update packages
@@ -25,17 +25,17 @@ COPY build/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY build/settings-docker.xml /usr/share/maven/ref/settings-docker.xml
 
 RUN chmod +x /usr/local/bin/mvn-entrypoint.sh
-ENV MAVEN_CONFIG "/root/.m2"
+ENV MAVEN_CONFIG="/root/.m2"
 
 # Install gauge
 COPY build/download_gauge.sh /download_gauge.sh
 ARG GAUGE_VERSION
 ARG GAUGE_REPORTPORTAL_VERSION
-ENV GAUGE_REPORTPORTAL_VERSION $GAUGE_REPORTPORTAL_VERSION
-ENV GAUGE_REPORTPORTAL_ARCHIVE reportportal-$GAUGE_REPORTPORTAL_VERSION-linux-musl-x64.zip
-ENV GAUGE_VERSION $GAUGE_VERSION
-ENV GAUGE_ARCHIVE gauge-$GAUGE_VERSION-linux.x86_64.zip
-ENV GAUGE_TELEMETRY_ENABLED false
+ENV GAUGE_REPORTPORTAL_VERSION=$GAUGE_REPORTPORTAL_VERSION
+ENV GAUGE_REPORTPORTAL_ARCHIVE=reportportal-$GAUGE_REPORTPORTAL_VERSION-linux-musl-x64.zip
+ENV GAUGE_VERSION=$GAUGE_VERSION
+ENV GAUGE_ARCHIVE=gauge-$GAUGE_VERSION-linux.x86_64.zip
+ENV GAUGE_TELEMETRY_ENABLED=false
 RUN set -ex && pwd && \
     /download_gauge.sh --version=${GAUGE_VERSION} && \
     rm -rf download_gauge.sh && \
