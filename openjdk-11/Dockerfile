@@ -1,4 +1,4 @@
-FROM alpine:3.24.2
+FROM alpine:3.24.3
 
 # Build-time metadata as defined at http://label-schema.org
 
